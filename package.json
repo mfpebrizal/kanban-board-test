@@ -16,7 +16,7 @@
   "scripts": {
     "prestart": "npm install",
     "pretest": "npm install",
-    "start": "cross-env HOST=0.0.0.0 PORT=8004 ./node_modules/.bin/react-scripts start",
+    "start": "cross-env HOST=0.0.0.0 PORT=8000 ./node_modules/.bin/react-scripts start",
     "test": "cross-env CI=true ./node_modules/.bin/react-scripts test --verbose --env=jsdom --testResultsProcessor ./node_modules/jest-junit"
   },
   "devDependencies": {
