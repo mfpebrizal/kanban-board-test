@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="10" failures="1" time="2.24">
+  <testsuite name="undefined" errors="0" failures="1" skipped="0" timestamp="2022-01-31T17:23:45" time="1.761" tests="10">
+    <testcase classname=" Clicking on Create Task Button should add it to first stage and do nothing if input is empty" name=" Clicking on Create Task Button should add it to first stage and do nothing if input is empty" time="0.049">
+      <failure>Error: expect(received).toBeFalsy()
+
+Received: &quot;task 1&quot;
+    at Object.&lt;anonymous&gt; (/Users/mfpebrizal/Documents/karir/test_masuk_kerja/cookies/kanban-board/src/App.test.js:44:32)
+    at Object.asyncJestTest (/Users/mfpebrizal/Documents/karir/test_masuk_kerja/cookies/kanban-board/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /Users/mfpebrizal/Documents/karir/test_masuk_kerja/cookies/kanban-board/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/mfpebrizal/Documents/karir/test_masuk_kerja/cookies/kanban-board/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /Users/mfpebrizal/Documents/karir/test_masuk_kerja/cookies/kanban-board/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)</failure>
+    </testcase>
+    <testcase classname=" For a task in stage 0, backward icon is disabled and forward icon is enabled" name=" For a task in stage 0, backward icon is disabled and forward icon is enabled" time="0.022">
+    </testcase>
+    <testcase classname=" For a task in stage 0, can be moved forward till stage 4 and check for icons are enabled/disabled correctly" name=" For a task in stage 0, can be moved forward till stage 4 and check for icons are enabled/disabled correctly" time="0.035">
+    </testcase>
+    <testcase classname=" For a task in stage 4, can be moved backward till stage 0 and check for icons are enabled/disabled correctly" name=" For a task in stage 4, can be moved backward till stage 0 and check for icons are enabled/disabled correctly" time="0.037">
+    </testcase>
+    <testcase classname=" Clicking on delete should delete the task in stage 0" name=" Clicking on delete should delete the task in stage 0" time="0.014">
+    </testcase>
+    <testcase classname=" Clicking on delete should delete the task in stage 1" name=" Clicking on delete should delete the task in stage 1" time="0.019">
+    </testcase>
+    <testcase classname=" Clicking on delete should delete the task in stage 2" name=" Clicking on delete should delete the task in stage 2" time="0.02">
+    </testcase>
+    <testcase classname=" Clicking on delete should delete the task in stage 3" name=" Clicking on delete should delete the task in stage 3" time="0.022">
+    </testcase>
+    <testcase classname=" after many forward and back operations, tasks are in correct state" name=" after many forward and back operations, tasks are in correct state" time="0.116">
+    </testcase>
+    <testcase classname=" tasks are in correct state after multiple move and deletions" name=" tasks are in correct state after multiple move and deletions" time="0.03">
+    </testcase>
+  </testsuite>
+</testsuites>

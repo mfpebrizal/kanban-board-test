@@ -8,10 +8,7 @@ export default class KanbanBoard extends Component {
     // Therefore, when you perform any operation on tasks, make sure you pick tasks by names (primary key) instead of any kind of index or any other attribute.
     this.state = {
       newTaskInput: "",
-      tasks: [
-            { name: '1', stage: 1 },
-            { name: '2', stage: 0 },
-        ]
+      tasks: []
     };
     this.stagesNames = ['Backlog', 'To Do', 'Ongoing', 'Done'];
     this.onClickCreateButton = this.onClickCreateButton.bind(this);
@@ -41,7 +38,7 @@ export default class KanbanBoard extends Component {
       case "back":
         return Math.max(0, stage-1);
       case "forward":
-        return Math.min(stagesLength, stage+1);
+        return Math.min(stagesLength-1, stage+1);
       default: 
         return; 
     }
@@ -51,26 +48,44 @@ export default class KanbanBoard extends Component {
     return this.state.tasks.findIndex((el) => el.name === name)
   }
 
-  changeTask(index, task) {
-
+  changeTask(index, updatedTask) {
+    this.setState(prevState => {
+      return {
+        tasks: [
+          ...prevState.tasks.slice(0, index),
+          ...prevState.tasks.slice(index+1, prevState.tasks.length),
+          ...updatedTask ? [updatedTask] : []
+        ]
+      }
+    })
   }
 
   onClickBackButton(e, task) {
     e.preventDefault()
-    const stage = this.changeStage(task.stage, "back")
+    const newStage = this.changeStage(task.stage, "back")
+    const updatedTask = {
+      name: task.name,
+      stage: newStage
+    }
     const index = this.findIndexByTaskName(task.name)
-    console.log(stage)
+    this.changeTask(index, updatedTask)
   }
 
   onClickForwardButton(e, task) {
     e.preventDefault()
-    const stage = this.changeStage(task.stage, "forward")
-    console.log(stage)
+    const newStage = this.changeStage(task.stage, "forward")
+    const updatedTask = {
+      name: task.name,
+      stage: newStage
+    }
+    const index = this.findIndexByTaskName(task.name)
+    this.changeTask(index, updatedTask)
   }
 
   onClickDeleteButton(e, task) {
     e.preventDefault()
-    console.log(task)
+    const index = this.findIndexByTaskName(task.name)
+    this.changeTask(index, null)
   }
 
   render() {
@@ -104,10 +119,10 @@ export default class KanbanBoard extends Component {
                                       <div className="li-content layout-row justify-content-between align-items-center">
                                         <span data-testid={`${task.name.split(' ').join('-')}-name`}>{task.name}</span>
                                         <div className="icons">
-                                          <button onClick={(e) => this.onClickBackButton(e, task)} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-back`}>
+                                          <button onClick={(e) => this.onClickBackButton(e, task)} disabled={task.stage === 0} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-back`}>
                                             <i className="material-icons">arrow_back</i>
                                           </button>
-                                          <button onClick={(e) => this.onClickForwardButton(e, task)} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-forward`}>
+                                          <button onClick={(e) => this.onClickForwardButton(e, task)} disabled={task.stage === this.stagesNames.length-1} className="icon-only x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-forward`}>
                                             <i className="material-icons">arrow_forward</i>
                                           </button>
                                           <button onClick={(e) => this.onClickDeleteButton(e, task)} className="icon-only danger x-small mx-2" data-testid={`${task.name.split(' ').join('-')}-delete`}>
